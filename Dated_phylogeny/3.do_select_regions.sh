@@ -3,7 +3,7 @@ FILEDIR="/home/vzw531/data/GFH-project/distant/Dated_phylogeny/fastas"
 OUTDIR="/home/vzw531/data/GFH-project/distant/Dated_phylogeny/fastas/regions"
 
 #module load bcftools/2.31.0  
-
+#select regions in the species fasta files previously generated.
 for FILE in $FILEDIR/*fa.gz; do
   OUTFA=$(basename $FILE .gz)
   BN=$(basename $OUTFA .fa)
@@ -21,7 +21,7 @@ SUS="SusScrofa"
 bedtools getfasta -fi $REF -bed $REGION -fo $OUTDIR/$REF_OUT
 sed -i "s/^>/>${SUS}_/" "$OUTDIR/$REF_OUT"
 
-
+# Generate a file for each selected region of 10kb including all samples
 while read window; do
   CHR=$(echo "$window" | cut -f1)
   START=$(echo "$window" | cut -f2 )
