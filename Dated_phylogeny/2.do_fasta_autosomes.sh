@@ -3,6 +3,7 @@ ANGSD="/maps/projects/seqafrica/apps/modules/software/angsd/0.940/bin/angsd"
 REF="/projects/seqafrica/data/mapping/genomes/SusScrofa11_1.fasta"
 REGION="/home/vzw531/data/GFH-project/distant/refs_files/SusScrofa_autosomes.txt"
 OUTDIR="/home/vzw531/data/GFH-project/distant/Dated_phylogeny/fastas"
+SITES="/home/vzw531/data/GFH-project/distant/sites_filter/GLfilters/combined_filters/sites_filters_GFH_keep.angsdfile"
 
 while read BAM; do
   BN=$(basename "$BAM" .SusScrofa.bam)
@@ -10,6 +11,7 @@ while read BAM; do
     -setMinDepth 3 \
     -doCounts 1 \
     -rf "$REGION" \
+    -sites "$SITES" \
     -uniqueOnly 1 \
     -remove_bads 1 \
     -minQ 25\
