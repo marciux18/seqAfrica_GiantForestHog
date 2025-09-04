@@ -1,0 +1,35 @@
+## SOFTWARE
+PSMC_DIR: "/PSMCpath/bin/psmc-0.6.5/"
+BCFTOOLS: "/opt/software/bcftools/1.21/bin/bcftools"
+VCFUTILS: "/opt/software/bcftools/1.21/bin/vcfutils.pl"
+
+# Assuming overall minimum depth of 10, then we will
+# miss <<2% of heterozygous sites (1-sum(dbinom(2:8,10,0.5)))
+ALLELE_SUPPORT: 2
+
+MIN_MQ: 25
+MIN_BQ: 30
+
+OUTDIR: "/path/PSMC/potamochoerus/ABP"
+REF: "/path2reference/genomes/SusScrofa11_1.fasta"   ## must be the same as the one used for mapping
+GOODBED: "/bushpig_QC_filters_pig.OKsites.bed"  ## Sites that will be INCLUDED in the analysis
+
+SAMPLES:
+  Sample1: /path2BAM/Sample1.SusScrofa.bam # Mean depth 40.2
+  Sample2: /path2BAM/Sample2.SusScrofa.bam # Mean depth 38.9
+  Sample3: /path2BAM/Sample3.SusScrofa.bam # Mean depth 20.9
+  Sample4: /path2BAM/Sample4.SusScrofa.bam # Mean depth 40.9
+
+DEPTHS: # First param (minimum): mean depth / 2 but minimum 10. Second param (maximum): mean depth * 1.5
+  Sample1:
+    - 20
+    - 60
+  Sample2: 
+    - 19
+    - 58
+  Sample3:
+    - 10
+    - 31 
+  Sample4: 
+    - 20
+    - 61
