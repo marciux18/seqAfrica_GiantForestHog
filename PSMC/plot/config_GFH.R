@@ -3,7 +3,7 @@ g <- 6
 i.iteration <- 25
 s <- 100
 files <-list.files("/psmc/PSMC_OUT/",".psmc",full.names=T)
-color_sp = c("#11dc43ff","#165927ff")
+color_sp = c("#90a955","#4f772d")
 sp_name_u="Giant forest hog (Uganda)"
 sp_name_g="Giant forest hog (Guinea)"
 plot_name="GFH_psmc.png"
