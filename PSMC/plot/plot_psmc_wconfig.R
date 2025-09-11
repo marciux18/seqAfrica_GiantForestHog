@@ -1,3 +1,4 @@
+# Get command-line arguments
 args <- commandArgs(trailingOnly = TRUE)
 
 if (length(args) == 0) {
@@ -16,8 +17,7 @@ cat("Sourcing:", input_file, "\n")
 source(input_file)
 
 
-psmcFiles <- files
-
+### Functions ###
 psmc.result<-function(file, i.iteration, mu, s, g) {
   X<-scan(file=file,what="",sep="\n",quiet=TRUE)
   
@@ -49,11 +49,21 @@ psmc.result<-function(file, i.iteration, mu, s, g) {
   data.frame(YearsAgo,Ne)
 }
 
+makeTransparent = function(..., alpha=0.5) {
+  if(alpha<0 | alpha>1) stop("alpha must be between 0 and 1")
+  alpha = floor(255*alpha)
+  newColor = col2rgb(col=unlist(list(...)), alpha=FALSE)
+  .makeTransparent = function(col, alpha) {
+    rgb(red=col[1], green=col[2], blue=col[3], alpha=alpha, maxColorValue=255)
+  }
+  newColor = apply(newColor, 2, .makeTransparent, alpha=alpha)
+  return(newColor)
+}
 
+x_lim_sourced=xlim
 res <- lapply(psmcFiles, psmc.result, i.iteration, mu, s, g)
 names(res) <- gsub(".psmc", "",basename(psmcFiles))
 
-pop=pop
 
 #remove the last 8 unreliable "rows"
 res2 <- lapply(res, function(x) x[-((nrow(x) - 8):nrow(x)),])
@@ -72,24 +82,25 @@ png(file = plot_name, width = 3200, height = 2400, res = 300)
 par(mar = c(5, 5, 4, 1) + 0.1)
 
 # First individual for axis setup
-first_ind <- names(res2)[1]
+first_ind <- names(res2)[10]
 suppressWarnings(
   plot(type = 'l',x = res2[[first_ind]]$YearsAgo, y = res2[[first_ind]]$Ne,
-       log = 'x', col = "white",
+       log = 'x', col = "white",xaxt="n",yaxt="n",
        xlab = paste0("Years ago (mu=", mu, ", g=", g, ")"),
        ylab = "Effective Population Size",
-       cex.lab = 1.5,
-       ylim = c(0, 150000), cex.axis = 1.5)
+       cex.lab = 1.5, xlim=x_lim_sourced,
+       ylim =c(0, 150000), cex.axis = 1.5)
 )
 for (i in seq_along(res2)) {
   ind <- names(res2)[i]
   pop_name <- ind_to_pop[ind]
-
     lines(x = res2[[ind]]$YearsAgo,
           y = res2[[ind]]$Ne,
           col = final_palette[pop_name],
           lwd = 2)
   }
-legend("topleft", legend = names(rep_inds), col = final_palette[names(rep_inds)], lty = 1, lwd = 3, bty = "n", cex = 1.5)
+axis(1, at=axTicks(1), cex.axis=1.5, labels=format(axTicks(1), scientific=FALSE, big.mark=""))
+axis(2, at=axTicks(1), cex.axis=1.5, labels=format(axTicks(1), scientific=FALSE, big.mark=""))
+legend("topright", legend = names(rep_inds), col = final_palette[names(rep_inds)], lty = 1, lwd = 3, bty = "n", cex = 1.5)
 
 dev.off()
