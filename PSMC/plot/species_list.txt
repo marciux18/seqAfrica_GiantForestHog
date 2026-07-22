@@ -1,0 +1,27 @@
+GForGui00161	Giant Forest Hog	#90a955
+GForUga00152	Giant Forest Hog	#4f772d
+GForUga00153	Giant Forest Hog	#4f772d
+GForUga00154	Giant Forest Hog	#4f772d
+GForUga00155	Giant Forest Hog	#4f772d
+GForUga00156	Giant Forest Hog	#4f772d
+GForUga00157	Bushpig	#390099
+RRivEqu00169	Red river hog	#ff006e
+RRivEqu00171	Red river hog	#ff006e
+RRivGab00178	Red river hog	#ff006e
+RRivTog00186	Red river hog	#ff006e
+BPigGha00038	Red river hog	#ff006e
+BPigUga00001	Bushpig	#390099
+BPigUga00002	Bushpig	#390099
+BPigUga00003	Bushpig	#390099
+RRivNIG46518	Red river hog	#ff006e
+RRivNIG46529	Red river hog	#ff006e
+DWarxxx00116	Desert warthog	#ffd166
+DWarxxx00117	Desert warthog	#ffd166
+CWarKen00066	Desert warthog	#ffd166
+CWarGha00064	Common warthog	#f77f00
+CWarNam00062	Common warthog	#f77f00
+CWarTan00065	Common warthog	#f77f00
+CWarUga00044	Common warthog	#f77f00
+CWarZim00061	Common warthog	#f77f00
+CWarUga00060	Common warthog	#f77f00
+CWarZam00063	Common warthog	#f77f00
